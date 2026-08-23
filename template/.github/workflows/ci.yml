@@ -8,4 +8,4 @@ on:
 
 jobs:
   checks:
-    uses: dreondev/python-ci/.github/workflows/python-checks.yml@main
+    uses: dreondev/python-ci/.github/workflows/python-checks.yml@v1
