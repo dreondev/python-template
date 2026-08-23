@@ -1,0 +1,90 @@
+# region project
+[project]
+name = "{{ project_name }}"
+version = "0.1.0"
+description = "{{ project_description }}"
+readme = "README.md"
+requires-python = ">=3.14"
+license = "LicenseRef-Proprietary"
+classifiers = [
+    "Private :: Do Not Upload",
+]
+dependencies = []
+# endregion
+
+# region build
+[build-system]
+requires = ["uv_build>=0.11.7,<0.12.0"]
+build-backend = "uv_build"
+# endregion
+
+# region dependency groups
+[dependency-groups]
+dev = ["ruff", "mypy", "pytest", "pre-commit", "commitizen", "poethepoet", "pip-audit"]
+docs = ["mkdocs-material", "mkdocstrings[python]"]
+# endregion
+
+# region ruff
+[tool.ruff]
+line-length = 88
+indent-width = 4
+
+[tool.ruff.lint]
+extend-select = ["E", "B", "F", "W", "I", "D"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["D100", "D103"]
+
+[tool.ruff.format]
+indent-style = "space"
+quote-style = "double"
+# endregion
+
+# region mypy
+[tool.mypy]
+strict = true
+allow_redefinition = true
+implicit_reexport = false
+warn_no_return = true
+warn_unreachable = true
+show_error_context = true
+show_error_code_links = true
+pretty = true
+color_output = true
+# endregion
+
+# region pytest
+[tool.pytest.ini_options]
+addopts = ["-ra", "-q"]
+testpaths = ["tests"]
+# endregion
+
+# region commitizen
+[tool.commitizen]
+name = "cz_conventional_commits"
+version_scheme = "semver2"
+version_provider = "uv"
+tag_format = "v$version"
+update_changelog_on_bump = true
+major_version_zero = true
+annotated_tag = true
+# endregion
+
+# region tasks
+[tool.poe.tasks]
+lint = "ruff check ."
+format = "ruff format ."
+typecheck = "mypy src tests"
+test = "pytest"
+hooks = "pre-commit run --all-files"
+docs = "mkdocs serve"
+docs-build = "mkdocs build"
+audit = "pip-audit"
+
+[tool.poe.tasks.check]
+sequence = ["lint", "typecheck", "test", "audit"]
+help = "Run all checks"
+# endregion

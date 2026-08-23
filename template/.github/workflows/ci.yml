@@ -1,0 +1,11 @@
+name: ci
+
+on:
+  push:
+    branches: [develop, main]
+  pull_request:
+    branches: [develop, main]
+
+jobs:
+  checks:
+    uses: dreondev/python-ci/.github/workflows/python-checks.yml@main

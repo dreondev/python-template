@@ -1,0 +1,15 @@
+_subdirectory: template
+_templates_suffix: ""
+
+project_name:
+  type: str
+  help: Project name, used as distribution name (e.g. my-tool)
+
+package_name:
+  type: str
+  help: Python import name, no dashes (e.g. my_tool)
+  default: "{{ project_name | replace('-', '_') }}"
+
+project_description:
+  type: str
+  help: Short description of the project
