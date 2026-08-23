@@ -9,3 +9,4 @@ jobs:
     uses: dreondev/python-ci/.github/workflows/python-release.yml@v1
     permissions:
       contents: write
+    secrets: inherit
