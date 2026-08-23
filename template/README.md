@@ -42,3 +42,22 @@ writes a BOM that breaks TOML parsers. Use an editor or
 `Set-Content -Encoding utf8NoBOM`.
 
 Line endings are normalized to LF via `.gitattributes`.
+
+## Releasing
+
+Merge `develop` into `main` via pull request. The release workflow then
+bumps the version, updates the changelog and creates the tag.
+
+When merging, clear the extended description. It repeats the commit
+messages, and commitizen would count them twice in the changelog.
+
+## Template updates
+
+This project was generated with copier. To pull in template changes:
+
+```bash
+uvx copier update
+```
+
+Keep `.copier-answers.yml` in version control — it records which
+template version this project came from.
