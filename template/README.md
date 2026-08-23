@@ -13,8 +13,8 @@ uv run pre-commit install --hook-type commit-msg
 uv run pre-commit install --hook-type pre-push
 ```
 
-The three hook types run at different points: formatting and type checks
-on commit, message validation on commit-msg, tests before push.
+Commit the generated `uv.lock` — CI runs `uv sync --locked` and fails
+without it.
 
 ## Tasks
 
