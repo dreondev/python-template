@@ -84,6 +84,14 @@ docs = "mkdocs serve"
 docs-build = "mkdocs build"
 audit = "pip-audit"
 
+[tool.poe.tasks.clean]
+help = "Remove build artifacts"
+sequence = [
+  { script = "shutil:rmtree('dist', ignore_errors=True)" },
+  { script = "shutil:rmtree('site', ignore_errors=True)" },
+  { script = "shutil:rmtree('.ruff_cache', ignore_errors=True)" },
+]
+
 [tool.poe.tasks.check]
 sequence = ["lint", "typecheck", "test", "audit"]
 help = "Run all checks"
