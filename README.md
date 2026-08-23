@@ -12,14 +12,13 @@ Replace `<project-name>` with your actual project name, for example
 uvx copier copy gh:dreondev/python-template <project-name>
 cd <project-name>
 uv sync
+git init
+git branch -m develop
 uv run pre-commit install
 uv run pre-commit install --hook-type commit-msg
 uv run pre-commit install --hook-type pre-push
-git init
-git branch -m develop
 git add -A
-git commit -m "chore: initialize project from template"
-```
+git commit -m "chore: initialize project from template"```
 
 Copier will then ask for the project name, the Python import name and a
 short description.
